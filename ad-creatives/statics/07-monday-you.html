@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — A money manager that texts like a friend</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>.phone { width: 100%; }</style>
+</head>
+<body class="grain">
+<div class="canvas">
+
+  <div class="glow" style="left:-400px; top:300px"></div>
+  <div class="phone"><div class="phone-head"><div class="avatar ">f</div><div class="contact">Flip</div></div><div class="thread" id="thread"></div></div>
+  <div class="headline sm">A money manager that <em>texts like a friend.</em></div>
+
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>F.chat(document.getElementById("thread"), [
+  { at: 0, me: "be honest. how bad was my weekend" },
+  { at: 1, flip: "$212 across 4 bars and one 2am taco run 🌮" },
+  { at: 2, flip: "Want me to move $50 to savings so Monday-you forgives Saturday-you?" },
+  { at: 3, me: "ugh. fine." },
+  { at: 4, flip: "Moved ✅ Monday-you says thanks." },
+]);</script>
+</body>
+</html>

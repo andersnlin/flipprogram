@@ -30,3 +30,10 @@ not auto-fill them. Populate the Email column as you gather real addresses
 (TikTok Creator Marketplace, a database like Modash/Upfluence, the creator's
 Linktree, or a first DM). Sending only happens when you click "Open in mail
 app" on a drafted email — nothing is sent automatically.
+
+## Ad creatives
+
+`ad-creatives/` has the competitor ad research, concepts, and code-built Meta
+ad creatives (7 statics in feed + story sizes, 3 animated 9:16 videos). The
+rendered files are in `ad-creatives/out/`. See `ad-creatives/README.md` for the
+research, ready-to-paste ad copy, and how to edit and re-render.

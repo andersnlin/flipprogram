@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — Don't track it. Text it.</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+  .notice {
+    align-self: stretch;
+    display: flex; gap: 22px; align-items: center;
+    background: rgba(255,255,255,0.07); border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 36px; padding: 26px 30px;
+  }
+  .notice .ic { width: 64px; height: 64px; border-radius: 16px; background: #3a3a44; display: grid; place-items: center; font-size: 34px; flex: none; }
+  .notice b { display: block; font-size: 26px; font-weight: 700; opacity: 0.6; margin-bottom: 4px; }
+  .notice p { font-size: 32px; font-weight: 500; }
+  .vs { font-size: 28px; font-weight: 800; letter-spacing: 0.1em; color: var(--muted); align-self: center; margin: -24px 0; }
+  .phone { width: 100%; }
+  body.story .phone { margin-top: 20px; }
+</style>
+</head>
+<body class="grain">
+<div class="canvas">
+  <div class="glow" style="right:-380px; top:520px"></div>
+  <div class="eyebrow">Most money apps</div>
+  <div class="notice">
+    <div class="ic">🔔</div>
+    <div><b>BUDGET APP · now</b><p>You have 6 active subscriptions. Tap to review.</p></div>
+  </div>
+  <div class="vs">— VS —</div>
+  <div class="phone">
+    <div class="phone-head"><div class="avatar">f</div><div class="contact">Flip</div></div>
+    <div class="thread" id="thread"></div>
+  </div>
+  <div class="headline">Don't track it.<br><em>Text it.</em></div>
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>
+  F.chat(document.getElementById("thread"), [
+    { at: 0, me: "cancel planet fitness. I haven't gone since january 💀" },
+    { at: 1, flip: "Done ✅ Canceled. You'll save <strong>$24.99/mo</strong> ($299.88/yr)." },
+  ]);
+</script>
+</body>
+</html>

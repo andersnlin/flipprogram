@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — Money apps show you. Flip does it.</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+  .table { display: flex; flex-direction: column; border-radius: 40px; overflow: hidden; border: 2px solid rgba(255,255,255,0.12); }
+  .tr { display: grid; grid-template-columns: 1fr 190px 190px; align-items: center; font-size: 34px; font-weight: 600; min-height: 112px; }
+  .tr + .tr { border-top: 2px solid rgba(255,255,255,0.08); }
+  .tr > span:first-child { padding: 0 32px; }
+  .tr > span:not(:first-child) { text-align: center; align-self: stretch; display: grid; place-items: center; }
+  .th { font-size: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.9; min-height: 120px; }
+  .th span:nth-child(2) { opacity: 0.55; line-height: 1.2; }
+  .fl { background: var(--accent); color: var(--accent-ink); }
+  .th .fl { font-size: 44px; font-weight: 900; letter-spacing: -0.03em; text-transform: none; }
+  .y { font-size: 48px; font-weight: 900; } .n { font-size: 40px; color: var(--danger); font-weight: 900; }
+  body.story .tr { min-height: 150px; }
+</style>
+</head>
+<body class="grain">
+<div class="canvas">
+
+  <div class="glow" style="right:-400px; top:-200px"></div>
+  <div class="headline sm">Money apps show you.<br><em>Flip does it.</em></div>
+  <div class="table">
+    <div class="tr th"><span></span><span>Typical<br>money app</span><span class="fl">Flip</span></div>
+    <div class="tr"><span>See where your money went</span><span class="y">✓</span><span class="y fl">✓</span></div>
+    <div class="tr"><span>Cancel subscriptions — by text</span><span class="n">✕</span><span class="y fl">✓</span></div>
+    <div class="tr"><span>Split bills inside the group chat</span><span class="n">✕</span><span class="y fl">✓</span></div>
+    <div class="tr"><span>Pay friends back &amp; move money</span><span class="n">✕</span><span class="y fl">✓</span></div>
+    <div class="tr"><span>Nothing to download</span><span class="n">✕</span><span class="y fl">✓</span></div>
+  </div>
+
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script></script>
+</body>
+</html>

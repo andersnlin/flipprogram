@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — 6 money apps, 1 text thread</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+  .app { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 22px; font-weight: 600; opacity: 0.55; position: relative; }
+  .app .ic { width: 118px; height: 118px; border-radius: 30px; display: grid; place-items: center; font-size: 56px; filter: grayscale(0.6); }
+  .app::after { content: "✕"; position: absolute; top: -14px; right: 4px; width: 44px; height: 44px; border-radius: 50%; background: var(--danger); color: #fff; font-size: 26px; font-weight: 900; display: grid; place-items: center; }
+  .arrow { align-self: center; font-size: 64px; font-weight: 900; color: var(--accent); margin: -24px 0; }
+  .phone { width: 100%; }
+</style>
+</head>
+<body class="grain">
+<div class="canvas">
+
+  <div class="glow" style="left:-420px; top:-300px"></div>
+  <div class="headline sm">6 money apps.<br><em>1 text thread.</em></div>
+  <div class="grid">
+    <div class="app"><div class="ic" style="background:#5b5bd6">📊</div>Budget</div>
+    <div class="app"><div class="ic" style="background:#e5484d">🧾</div>Bills</div>
+    <div class="app"><div class="ic" style="background:#12a594">🍕</div>Splits</div>
+    <div class="app"><div class="ic" style="background:#f76b15">📈</div>Invest</div>
+    <div class="app"><div class="ic" style="background:#8e4ec6">🔁</div>Subs</div>
+    <div class="app"><div class="ic" style="background:#0090ff">🐷</div>Savings</div>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="phone"><div class="phone-head"><div class="avatar ">f</div><div class="contact">Flip</div></div><div class="thread" id="thread"></div></div>
+  <div class="sub story-only">No app to download. Flip lives in iMessage.</div>
+
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>F.chat(document.getElementById("thread"), [
+  { at: 0, me: "pay alex back $40, check my balance, and cancel spotify duo" },
+  { at: 1, flip: "Sent $40 to Alex ✅\nChecking: <strong>$1,284.10</strong>\nSpotify Duo canceled — saving <strong>$16.99/mo</strong>" },
+]);</script>
+</body>
+</html>

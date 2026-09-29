@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — Add Flip to the group chat</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>.phone { width: 100%; } .b.flip { max-width: 86%; }</style>
+</head>
+<body class="grain">
+<div class="canvas">
+
+  <div class="glow" style="right:-420px; top:200px"></div>
+  <div class="eyebrow story-only">Group chat, meet your new treasurer</div>
+  <div class="phone"><div class="phone-head"><div class="avatar group">🏔️</div><div class="contact">Tahoe trip · 4 people</div></div><div class="thread" id="thread"></div></div>
+  <div class="headline sm">Add Flip to the <em>group chat.</em></div>
+  <div class="sub story-only">Split the Airbnb, settle the tab, stop chasing people for money.</div>
+
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>F.chat(document.getElementById("thread"), [
+  { at: 0, who: "Maya", other: "ok who's covering the airbnb 👀" },
+  { at: 1, me: "@flip split the airbnb 4 ways" },
+  { at: 2, flip: "<div class='row'><span>Airbnb · Tahoe</span><span>$1,840.00</span></div><div class='row'><span>Each (÷4)</span><span>$460.00</span></div>" , cls: "card" },
+  { at: 3, flip: "Requests sent to Maya, Jordan & Sam 👍" },
+  { at: 4, who: "Jordan", other: "paid ✅ this is elite" },
+]);</script>
+</body>
+</html>

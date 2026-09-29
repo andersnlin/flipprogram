@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — POV: you still pay for the gym</title>
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="../shared/video.css">
+</head>
+<body class="grain" data-format="story">
+<div class="canvas v">
+  <div class="glow" id="glow" style="left:-300px; top:700px"></div>
+  <div class="hook" id="hook">POV: you still pay for a gym you quit in <em>January.</em></div>
+  <div class="phone fixed" id="phone" style="height:960px; top:640px">
+    <div class="phone-head"><div class="avatar">f</div><div class="contact">Flip</div></div>
+    <div class="thread" id="thread"></div>
+  </div>
+  <div class="dim" id="dim"></div>
+  <div class="stat" id="stat"><span id="amt">$0</span><small>back in your pocket, every year</small></div>
+  <div class="endcard" id="end">
+    <div class="headline">Don't track it.<br><em>Text it.</em></div>
+    <div class="sub">Flip is an AI money manager that lives in iMessage. No app to download.</div>
+    <div class="pill">Text Flip →</div>
+    <div class="num">+1 (628) 264-7696</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>
+  window.__duration = 14;
+  const $ = (id) => document.getElementById(id);
+
+  // 0.0–2.4  hook pops in word by word, then shrinks up to make room for the phone
+  F.words($("hook"), 0.15, 0.13);
+  F.track((t) => {
+    const x = F.inOut(F.p(t, 2.3, 0.6));
+    $("hook").style.transform = `translateY(${-170 * x}px) scale(${F.lerp(1, 0.62, x)})`;
+  });
+
+  // 2.6  phone slides up
+  F.track((t) => {
+    const x = F.outCubic(F.p(t, 2.5, 0.7));
+    $("phone").style.transform = `translateY(${(1 - x) * 1500}px)`;
+  });
+
+  F.chat($("thread"), [
+    { at: 3.4, me: "cancel planet fitness 💀" },
+    { at: 5.0, flip: "On it. Canceling your Planet Fitness membership…" },
+    { at: 6.6, flip: "Done ✅ Canceled. No more <strong>$24.99/mo</strong>." },
+    { at: 7.6, me: "wait that's it??" },
+  ]);
+
+  // 8.4–10.6  savings counter punch
+  F.window($("dim"), 8.4, 10.9);
+  F.window($("stat"), 8.4, 10.9);
+  F.track((t) => {
+    const x = F.outCubic(F.p(t, 8.5, 1.3));
+    $("amt").textContent = "+" + F.money(299.88 * x);
+    $("stat").style.transform = `scale(${F.lerp(0.7, 1, F.outBack(F.p(t, 8.4, 0.5)))})`;
+  });
+
+  // 10.9–14  end card
+  F.window($("end"), 10.9);
+  [...$("end").children].forEach((el, i) => F.reveal(el, 11.0 + i * 0.18, 0.5, 60));
+  F.track((t) => { $("glow").style.transform = `translate(${Math.sin(t * 0.6) * 120}px, ${Math.cos(t * 0.4) * 80}px)`; });
+</script>
+</body>
+</html>

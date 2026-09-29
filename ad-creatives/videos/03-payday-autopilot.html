@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — Payday, on autopilot</title>
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="../shared/video.css">
+<style>
+  .phone.fixed { top: 540px; height: 1000px; }
+  .phone.fixed .b.card { min-width: 80%; }
+  .bar { position: absolute; left: 90px; right: 90px; top: 1600px; height: 120px; border-radius: 30px; overflow: hidden; display: flex; background: rgba(255,255,255,0.08); }
+  .seg { height: 100%; display: grid; place-items: center; font-size: 30px; font-weight: 800; color: var(--ink); white-space: nowrap; overflow: hidden; }
+  .legend { position: absolute; left: 90px; right: 90px; top: 1740px; font-size: 30px; font-weight: 600; opacity: 0.7; text-align: center; }
+</style>
+</head>
+<body class="grain" data-format="story">
+<div class="canvas v">
+  <div class="glow" id="glow" style="left:-300px; top:900px"></div>
+  <div class="hook" id="hook">My payday routine takes <em>10</em> <em>seconds.</em></div>
+  <div class="phone fixed" id="phone">
+    <div class="phone-head"><div class="avatar">f</div><div class="contact">Flip</div></div>
+    <div class="thread" id="thread"></div>
+  </div>
+  <div class="bar" id="bar">
+    <div class="seg" style="background:#f4f1ea">🏠 Rent</div>
+    <div class="seg" style="background:#ffb4a2">💳</div>
+    <div class="seg" style="background:#8fd3ff">🛟</div>
+    <div class="seg" style="background:#c9b6ff">📈</div>
+    <div class="seg" style="background:var(--accent)">✨ Spend</div>
+  </div>
+  <div class="legend" id="legend">$2,340 paycheck, every dollar assigned</div>
+  <div class="endcard" id="end">
+    <div class="headline">Payday,<br><em>on autopilot.</em></div>
+    <div class="sub">Text Flip when you get paid. It handles the rest in iMessage.</div>
+    <div class="pill">Text Flip →</div>
+    <div class="num">+1 (628) 264-7696</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>
+  window.__duration = 15;
+  const $ = (id) => document.getElementById(id);
+
+  F.words($("hook"), 0.15, 0.13);
+  F.track((t) => {
+    const x = F.inOut(F.p(t, 1.9, 0.6));
+    $("hook").style.transform = `translateY(${-170 * x}px) scale(${F.lerp(1, 0.62, x)})`;
+    $("phone").style.transform = `translateY(${(1 - F.outCubic(F.p(t, 2.0, 0.7))) * 1650}px)`;
+  });
+
+  const plan = [["🏠 Rent (hold)", 1200], ["💳 Card payment", 278], ["🛟 Emergency fund", 300], ["📈 Roth IRA", 150], ["✨ Safe to spend", 412]];
+  const rows = plan.map(([k, v], i) => `<div class='row plan'${i === 4 ? " style='color:#1a8f3c'" : ""}><span>${k}</span><span>$${v.toLocaleString()}</span></div>`).join("");
+  F.chat($("thread"), [
+    { at: 2.9, me: "just got paid 💸" },
+    { at: 4.2, cls: "card", flip: `<strong>$2,340 landed.</strong> Here's the plan:<div style='height:10px'></div>${rows}` },
+    { at: 8.4, me: "run it" },
+    { at: 9.6, flip: "Done ✅ Everything's moved. See you next payday." },
+  ]);
+
+  // plan rows tick in one by one, and the paycheck bar fills segment by segment in sync
+  const total = plan.reduce((s, [, v]) => s + v, 0);
+  F.track((t) => {
+    document.querySelectorAll(".row.plan").forEach((r, i) => {
+      const x = F.outCubic(F.p(t, 4.6 + i * 0.45, 0.35));
+      r.style.opacity = x; r.style.transform = `translateX(${(1 - x) * 30}px)`;
+    });
+    [...document.querySelectorAll(".seg")].forEach((s, i) => {
+      const x = F.outCubic(F.p(t, 4.6 + i * 0.45, 0.5));
+      s.style.width = `${(plan[i][1] / total) * 100 * x}%`;
+    });
+  });
+  F.window($("bar"), 4.4, 12);
+  F.window($("legend"), 6.8, 12);
+
+  F.window($("end"), 12);
+  [...$("end").children].forEach((el, i) => F.reveal(el, 12.1 + i * 0.18, 0.5, 60));
+  F.track((t) => { $("glow").style.transform = `translate(${Math.sin(t * 0.6) * 120}px, ${Math.cos(t * 0.4) * 80}px)`; });
+</script>
+</body>
+</html>

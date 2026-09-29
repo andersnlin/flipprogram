@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — 6 money apps, 1 text thread</title>
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="../shared/video.css">
+<style>
+  .grid { position: absolute; left: 90px; right: 90px; top: 760px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px 40px; }
+  .app { display: flex; flex-direction: column; align-items: center; gap: 18px; font-size: 34px; font-weight: 600; }
+  .app .ic { width: 220px; height: 220px; border-radius: 56px; display: grid; place-items: center; font-size: 110px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .hook2 { top: 330px; }
+  #caption { position: absolute; left: 72px; right: 72px; top: 1620px; font-size: 52px; font-weight: 700; line-height: 1.15; opacity: 0.9; }
+  .phone.fixed { top: 470px; height: 1250px; }
+</style>
+</head>
+<body class="grain" data-format="story">
+<div class="canvas v">
+  <div class="glow" id="glow" style="right:-300px; top:300px"></div>
+  <div class="hook" id="hook">You have 6 money apps.</div>
+  <div class="grid" id="grid">
+    <div class="app"><div class="ic" style="background:#5b5bd6">📊</div>Budget</div>
+    <div class="app"><div class="ic" style="background:#e5484d">🧾</div>Bills</div>
+    <div class="app"><div class="ic" style="background:#12a594">🍕</div>Splits</div>
+    <div class="app"><div class="ic" style="background:#f76b15">📈</div>Invest</div>
+    <div class="app"><div class="ic" style="background:#8e4ec6">🔁</div>Subs</div>
+    <div class="app"><div class="ic" style="background:#0090ff">🐷</div>Savings</div>
+  </div>
+  <div id="caption">…and you still don't know where your money went.</div>
+  <div class="hook" id="hook2">Or… <em>one</em> <em>text</em> <em>thread.</em></div>
+  <div class="phone fixed" id="phone">
+    <div class="phone-head"><div class="avatar">f</div><div class="contact">Flip</div></div>
+    <div class="thread" id="thread"></div>
+  </div>
+  <div class="endcard" id="end">
+    <div class="headline">6 apps.<br><em>1 text.</em></div>
+    <div class="sub">Budget, bills, splits, subscriptions and investing. Just text Flip in iMessage.</div>
+    <div class="pill">Text Flip →</div>
+    <div class="num">+1 (628) 264-7696</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>
+  window.__duration = 16;
+  const $ = (id) => document.getElementById(id);
+
+  // 0–2  hook + icons pop in
+  F.words($("hook"), 0.1, 0.12);
+  F.window($("hook"), 0, 4.6);
+  const apps = [...document.querySelectorAll(".app")];
+  apps.forEach((a, i) => F.track((t) => {
+    const pop = F.outBack(F.p(t, 0.7 + i * 0.16, 0.4));
+    // 2.6–4.0 anxious shake, 4.0+ each falls off with gravity + spin
+    const shake = t > 2.6 && t < 4.1 ? Math.sin(t * 38 + i) * 7 : 0;
+    const f = F.p(t, 4.0 + i * 0.07, 0.9);
+    const fall = F.inCubic(f) * 1500;
+    const spin = F.inCubic(f) * (i % 2 ? 50 : -50);
+    a.style.opacity = F.clamp(pop * 2);
+    a.style.transform = `translate(${shake}px, ${fall}px) rotate(${spin + shake * 0.6}deg) scale(${pop})`;
+  }));
+  F.window($("caption"), 2.4, 4.4);
+  F.reveal($("caption"), 2.4, 0.5);
+
+  // 4.8–13  one thread does all of it, rapid-fire
+  F.words($("hook2"), 4.8, 0.14);
+  F.track((t) => {
+    const x = F.inOut(F.p(t, 5.8, 0.5));
+    $("hook2").style.transform = `translateY(${-150 * x}px) scale(${F.lerp(1, 0.7, x)})`;
+    $("phone").style.transform = `translateY(${(1 - F.outCubic(F.p(t, 5.8, 0.7))) * 1650}px)`;
+  });
+  F.chat($("thread"), [
+    { at: 6.6, me: "what's my balance" },
+    { at: 7.4, flip: "Checking: <strong>$1,284.10</strong>" },
+    { at: 8.0, me: "pay alex back $40 for dinner" },
+    { at: 8.8, flip: "Sent $40 to Alex ✅" },
+    { at: 9.4, me: "cancel spotify duo" },
+    { at: 10.2, flip: "Canceled ✅ saving <strong>$16.99/mo</strong>" },
+    { at: 10.8, me: "put $100 in my vacation fund" },
+    { at: 11.6, flip: "Moved ✅ Vacation fund: <strong>$1,150</strong> / $2,000 🏝️" },
+  ], { think: 0.5 });
+
+  // 13–16  end card
+  F.window($("end"), 13);
+  [...$("end").children].forEach((el, i) => F.reveal(el, 13.1 + i * 0.18, 0.5, 60));
+  F.track((t) => { $("glow").style.transform = `translate(${Math.sin(t * 0.5) * 140}px, ${Math.cos(t * 0.35) * 100}px)`; });
+</script>
+</body>
+</html>

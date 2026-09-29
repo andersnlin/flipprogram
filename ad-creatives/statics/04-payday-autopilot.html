@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flip — Payday, on autopilot</title>
+<link rel="stylesheet" href="../shared/base.css">
+<style>.phone { width: 100%; box-shadow: 0 30px 90px rgba(0,0,0,0.18), 0 0 0 10px #1c1c22; } .b.card { min-width: 76%; }</style>
+</head>
+<body class="light">
+<div class="canvas">
+
+  <div class="eyebrow story-only">Every other Friday</div>
+  <div class="headline sm">Payday, <em>on autopilot.</em></div>
+  <div class="phone"><div class="phone-head"><div class="avatar ">f</div><div class="contact">Flip</div></div><div class="thread" id="thread"></div></div>
+  <div class="sub story-only">Text Flip when you get paid. It splits your check the way you'd do it by hand, in about 10 seconds.</div>
+
+  <div class="cta">
+    <div class="logo"><div class="logo-mark">f</div>Flip</div>
+    <div class="pill">Text Flip →</div>
+  </div>
+</div>
+<script src="../shared/engine.js"></script>
+<script>F.chat(document.getElementById("thread"), [
+  { at: 0, me: "just got paid 💸" },
+  { at: 1, cls: "card", flip: "<strong>$2,340 landed.</strong> Here's the plan:<div style='height:10px'></div><div class='row'><span>🏠 Rent (hold)</span><span>$1,200</span></div><div class='row'><span>💳 Card payment</span><span>$278</span></div><div class='row'><span>🛟 Emergency fund</span><span>$300</span></div><div class='row'><span>📈 Roth IRA</span><span>$150</span></div><div class='row' style='color:#1a8f3c'><span>✨ Safe to spend</span><span>$412</span></div>" },
+  { at: 2, me: "run it" },
+  { at: 3, flip: "Done ✅ See you next payday." },
+]);</script>
+</body>
+</html>
