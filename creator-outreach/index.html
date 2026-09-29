@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flip Creator Outreach</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-title">
+    <h1>Creator Outreach</h1>
+    <p>Flip &times; TikTok finance creators &mdash; 40 prospects</p>
+  </div>
+  <div class="topbar-stats" id="stats"></div>
+</header>
+
+<section class="toolbar">
+  <div class="toolbar-group">
+    <label>Priority
+      <select id="filterPriority">
+        <option value="all">All</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+    </label>
+    <label>Status
+      <select id="filterStatus">
+        <option value="all">All</option>
+        <option value="Not contacted">Not contacted</option>
+        <option value="Emailed">Emailed</option>
+        <option value="Replied">Replied</option>
+        <option value="Negotiating">Negotiating</option>
+        <option value="Booked">Booked</option>
+        <option value="Passed">Passed</option>
+      </select>
+    </label>
+    <input type="search" id="search" placeholder="Search handle or niche&hellip;" />
+  </div>
+  <div class="toolbar-group toolbar-actions">
+    <button id="exportCsv" class="btn btn-secondary">Export CSV</button>
+    <button id="composeSelected" class="btn btn-primary">Compose email for selected</button>
+  </div>
+</section>
+
+<section class="table-wrap">
+  <table id="creatorTable">
+    <thead>
+      <tr>
+        <th class="col-check"><input type="checkbox" id="selectAll" /></th>
+        <th class="col-priority">Tier</th>
+        <th>Handle</th>
+        <th>Niche / angle</th>
+        <th>Why they fit</th>
+        <th class="col-email">Email</th>
+        <th class="col-rate">Rate</th>
+        <th class="col-status">Status</th>
+        <th class="col-actions">Draft</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</section>
+
+<div id="draftModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h2 id="draftModalTitle">Draft email</h2>
+      <button id="closeModal" class="btn-icon">&times;</button>
+    </div>
+    <div class="modal-body" id="draftModalBody"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
